@@ -20,7 +20,7 @@ class Oystercard
   end
 
   def touch_in
-    fail "Insufficient balance" if balance < MIN_FARE
+    fail "Insufficient balance" if sufficient_funds?
 
     @in_journey = true
   end
@@ -37,5 +37,9 @@ class Oystercard
 
   def exceed_limit?(value)
     @balance + value > CARD_LIMIT
+  end
+
+  def sufficient_funds?
+    balance < MIN_FARE
   end
 end
