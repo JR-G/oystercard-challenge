@@ -38,15 +38,19 @@ describe Oystercard do
     context 'has touched in with a balance' do
       before do
         subject.top_up amount
-        subject.touch_in
+        subject.touch_in(station)
       end
 
       it { is_expected.to be_in_journey }
+
+      it 'stores the entry station' do
+        expect(subject.entry_station).to eq station
+      end
     end
 
     context 'has not been topped up' do
       it 'throws an error' do
-        expect { subject.touch_in }.to raise_error "Insufficient balance"
+        expect { subject.touch_in(station) }.to raise_error "Insufficient balance"
       end
     end
   end
@@ -58,7 +62,7 @@ describe Oystercard do
     context 'has touched out' do
       before do
         subject.top_up amount
-        subject.touch_in
+        subject.touch_in(station)
         subject.touch_out
       end
 
