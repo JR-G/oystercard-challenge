@@ -5,6 +5,10 @@ describe Oystercard do
     expect(subject.balance).to eq 0
   end
 
+  it 'is initially not in a journey' do
+    expect(subject).not_to be_in_journey
+  end
+
   describe '#top_up' do
     
     it { is_expected.to respond_to(:top_up).with(1).argument }
@@ -33,10 +37,8 @@ describe Oystercard do
   end
 
   describe '#touch_in' do
-    it { is_expected.to respond_to :touch_in }
 
-    it 'changes in_journey? to be true' do
-      expect { subject.touch_in }.to change { subject.in_journey? }.to eq true
-    end
+    it { is_expected.to respond_to :touch_in }
+    
   end
 end

@@ -17,6 +17,8 @@ class Oystercard
     @balance -= amount
   end
 
+  def touch_in
+  end
 
   private
 
