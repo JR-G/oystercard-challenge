@@ -7,7 +7,7 @@ describe Oystercard do
 
   it 'can be topped up' do
     amount = 5
-    expect(subject.top_up(amount)).to change { subject.balance }.by(amount)
+    expect { subject.top_up(amount) }.to change { subject.balance }.by(amount)
   end
   
 end
