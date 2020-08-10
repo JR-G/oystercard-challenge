@@ -33,7 +33,7 @@ describe Oystercard do
 
 
   describe '#touch_in' do
-    it { is_expected.to respond_to :touch_in }
+    it { is_expected.to respond_to(:touch_in).with(1).argument }
 
     context 'has touched in with a balance' do
       before do
@@ -57,19 +57,19 @@ describe Oystercard do
 
 
   describe '#touch_out' do
-    it { is_expected.to respond_to :touch_out }
+    it { is_expected.to respond_to(:touch_out).with(1).argument }
       
     context 'has touched out' do
       before do
         subject.top_up amount
         subject.touch_in(station)
-        subject.touch_out
+        subject.touch_out(exit_station)
       end
 
       it { is_expected.not_to be_in_journey }
 
       it 'charges the card' do
-        expect { subject.touch_out }.to change { subject.balance }.by -Oystercard::MINIMUM_FARE
+        expect { subject.touch_out(exit_station) }.to change { subject.balance }.by -Oystercard::MINIMUM_FARE
       end
     end
   end
