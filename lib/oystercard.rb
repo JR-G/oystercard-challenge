@@ -19,20 +19,19 @@ class Oystercard
     @balance += amount
   end
 
-  def touch_in(station)
+  def touch_in(entry_station)
     fail "Insufficient balance" if sufficient_funds?
 
-    @entry_station = station
+    @entry_station = entry_station
     @in_journey = true
   end
 
-  def touch_out(station)
-    @exit_station = station
+  def touch_out(exit_station)
+    @exit_station = exit_station
     deduct(MINIMUM_FARE)
-    journeys << { :entry_station => @entry_station, :exit_station => @exit_station }
-    @entry_station = nil
+    record_journey
+    reset_entry_station
     @in_journey = false
-    
   end
 
   def in_journey?
@@ -40,6 +39,14 @@ class Oystercard
   end
 
   private
+  
+  def record_journey
+    journeys << { :entry_station => @entry_station, :exit_station => @exit_station }
+  end
+
+  def reset_entry_station
+    @entry_station = nil
+  end
 
   def deduct(amount)
     @balance -= amount
