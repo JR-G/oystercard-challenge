@@ -49,13 +49,21 @@ describe Oystercard do
   describe '#touch_in' do
     it { is_expected.to respond_to :touch_in }
 
-    it 'can start a journey' do
-      subject.touch_in
-      expect(subject).to be_in_journey
+    context 'had been topped up' do
+      before do
+        subject.top_up amount
+      end
+
+      it 'can start a journey' do
+        subject.touch_in
+        expect(subject).to be_in_journey
+      end
     end
 
-    it 'throws an error if balance in insufficient' do
-      expect { subject.touch_in }.to raise_error "Insufficient balance"
+    context 'has not been topped up' do
+      it 'throws an error' do
+        expect { subject.touch_in }.to raise_error "Insufficient balance"
+      end
     end
   end
 
@@ -65,6 +73,7 @@ describe Oystercard do
       
     context 'has previously touched in' do
       before do
+        subject.top_up amount
         subject.touch_in
       end
 
