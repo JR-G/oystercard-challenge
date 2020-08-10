@@ -75,11 +75,15 @@ describe Oystercard do
       before do
         subject.top_up amount
         subject.touch_in
+        subject.touch_out
       end
 
       it 'can end a journey' do
-        subject.touch_out
         expect(subject).not_to be_in_journey
+      end
+
+      it 'charges the card' do
+        expect { subject }.to change { subject.balance }.by -Oystercard::MINIMUM_FARE
       end
     end
   end

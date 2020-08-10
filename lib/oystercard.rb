@@ -3,7 +3,7 @@ class Oystercard
   attr_accessor :in_journey
 
   CARD_LIMIT = 90
-  MIN_FARE = 1
+  MINIMUM_FARE = 1
 
   def initialize
     @balance = 0
@@ -40,6 +40,6 @@ class Oystercard
   end
 
   def sufficient_funds?
-    balance < MIN_FARE
+    balance < MINIMUM_FARE
   end
 end
