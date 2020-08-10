@@ -40,7 +40,7 @@ describe Oystercard do
 
     it { is_expected.to respond_to :touch_in }
 
-    it 'is expected to be in journey' do
+    it 'can start a journey' do
       subject.touch_in
       expect(subject).to be_in_journey
     end

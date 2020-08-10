@@ -1,5 +1,6 @@
 class Oystercard
   attr_reader :balance
+  attr_accessor :in_journey
 
   CARD_LIMIT = 90
 
@@ -18,10 +19,11 @@ class Oystercard
   end
 
   def touch_in
+    @in_journey = true
   end
 
   def in_journey?
-    false
+    @in_journey
   end
 
   private
