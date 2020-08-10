@@ -4,6 +4,7 @@ describe Oystercard do
   let(:amount) { 5 }
   let(:entry_station) { double :station }
   let(:exit_station) { double :station }
+  let(:journey) { {entry_station: entry_station, exit_station: exit_station} }
   
   it 'has a balance of 0' do
     expect(subject.balance).to eq 0
@@ -75,6 +76,10 @@ describe Oystercard do
 
       it 'stores the exit station' do
         expect(subject.exit_station).to eq exit_station
+      end
+
+      it 'stores the journey' do
+        expect(subject.journeys).to include journey
       end
 
       it 'charges the card' do
