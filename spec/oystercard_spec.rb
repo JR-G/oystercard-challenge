@@ -83,7 +83,7 @@ describe Oystercard do
       end
 
       it 'charges the card' do
-        expect { subject }.to change { subject.balance }.by -Oystercard::MINIMUM_FARE
+        expect { subject.touch_out }.to change { subject.balance }.by -Oystercard::MINIMUM_FARE
       end
     end
   end
