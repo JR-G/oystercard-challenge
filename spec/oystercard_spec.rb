@@ -27,7 +27,8 @@ describe Oystercard do
 
     it 'can deduct the balance' do
       subject.top_up 10
-      expect { subject.deduct 5 }.to change { subject.balance }.by amount
+      amount = 5
+      expect { subject.deduct amount }.to change { subject.balance }.by -amount
     end
   end
 end
