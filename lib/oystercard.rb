@@ -20,6 +20,10 @@ class Oystercard
   def touch_in
   end
 
+  def in_journey?
+    false
+  end
+
   private
 
   def exceed_limit?(value)
