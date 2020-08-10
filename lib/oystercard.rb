@@ -27,8 +27,8 @@ class Oystercard
   end
 
   def touch_out(exit_station)
-    @exit_station = exit_station
     deduct(MINIMUM_FARE)
+    @exit_station = exit_station
     record_journey
     reset_entry_station
     @in_journey = false
