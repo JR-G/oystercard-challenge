@@ -20,7 +20,6 @@ class Oystercard
     fail "Insufficient balance" if sufficient_funds?
 
     @entry_station = station
-
     @in_journey = true
   end
 
@@ -31,7 +30,7 @@ class Oystercard
   end
 
   def in_journey?
-    @in_journey
+    !!entry_station
   end
 
   private
