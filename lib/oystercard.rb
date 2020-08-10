@@ -15,10 +15,6 @@ class Oystercard
     @balance += amount
   end
 
-  def deduct(amount)
-    @balance -= amount
-  end
-
   def touch_in
     fail "Insufficient balance" if sufficient_funds?
 
@@ -35,6 +31,10 @@ class Oystercard
   end
 
   private
+
+  def deduct(amount)
+    @balance -= amount
+  end
 
   def exceed_limit?(value)
     @balance + value > CARD_LIMIT

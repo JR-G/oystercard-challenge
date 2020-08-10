@@ -31,21 +31,6 @@ describe Oystercard do
   end
 
 
-  describe '#deduct' do
-    it { is_expected.to respond_to(:deduct).with(1).argument }
-
-    context 'has been topped up' do
-      before do
-        subject.top_up Oystercard::CARD_LIMIT
-      end
-
-      it 'can deduct the balance' do
-        expect { subject.deduct amount }.to change { subject.balance }.by -amount
-      end
-    end
-  end
-
-
   describe '#touch_in' do
     it { is_expected.to respond_to :touch_in }
 
