@@ -10,15 +10,6 @@ describe Oystercard do
     expect(subject.balance).to eq 0
   end
 
-  it 'is initially not in a journey' do
-    expect(subject).not_to be_in_journey
-  end
-
-  it 'has an empty list of journeys' do
-    expect(subject.journeys).to be_empty
-  end
-
-
   describe '#top_up' do
     it { is_expected.to respond_to(:top_up).with(1).argument }
 
@@ -47,9 +38,7 @@ describe Oystercard do
         subject.touch_in(entry_station)
       end
 
-      it { is_expected.to be_in_journey }
-
-      it 'stores the entry station' do
+      xit 'stores the entry station' do
         expect(subject.entry_station).to eq entry_station
       end
     end
@@ -72,14 +61,8 @@ describe Oystercard do
         subject.touch_out(exit_station)
       end
 
-      it { is_expected.not_to be_in_journey }
-
-      it 'stores the exit station' do
+      xit 'stores the exit station' do
         expect(subject.exit_station).to eq exit_station
-      end
-
-      it 'stores the journey' do
-        expect(subject.journeys).to include journey
       end
 
       it 'charges the card' do
