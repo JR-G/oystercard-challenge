@@ -2,10 +2,7 @@ require_relative 'station'
 require_relative 'journey'
 
 class Oystercard
-  attr_reader :balance
-  attr_reader :entry_station
-  attr_reader :exit_station
-  attr_reader :journeys
+  attr_reader :balance, :entry_station, :exit_station, :journeys
   attr_accessor :in_journey
 
   CARD_LIMIT = 90
@@ -26,7 +23,7 @@ class Oystercard
     fail "Insufficient balance" if sufficient_funds?
 
     @entry_station = entry_station
-    @in_journey = true
+    @journey_hold = Journey.new(entry_station)
   end
 
   def touch_out(exit_station)
@@ -34,7 +31,6 @@ class Oystercard
     @exit_station = exit_station
     record_journey
     reset_entry_station
-    @in_journey = false
   end
 
   def in_journey?
