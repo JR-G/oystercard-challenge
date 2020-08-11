@@ -11,6 +11,7 @@ class Journey
   end
 
   def fare
+    PENALTY_FARE
   end
 
   def complete?
